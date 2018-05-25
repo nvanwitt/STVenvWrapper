@@ -1,0 +1,14 @@
+[
+	{
+		"caption": "STVenvWrapper",
+        "id": "sublime_venv_wrapper",
+        "children":
+        [
+        	{
+                "command": "sublime_venv_wrapper",
+                "id": "anaconda_goto",
+                "caption": "Goto Definition"
+            }
+        ]
+	}
+]
