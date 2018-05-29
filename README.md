@@ -4,6 +4,8 @@ Wrapper for Virtual Environment Access with SublimeREPL
 
 STVenvWrapper is a wrapper script that allows simple generation of virutal-environment-specific REPLs through SublimeREPL.
 
+NOTE: You must have [SublimeREPL](https://github.com/wuub/SublimeREPL) to use this wrapper. For installation instructions visit the github page.
+
 This package will be made available through Package Control.
 
 To be in line with modern virtual environment tools, STVenvWrapper will, by default, search for the following directories:

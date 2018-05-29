@@ -5,7 +5,6 @@ import json
 
 
 class SublimeVenvWrapper(sublime_plugin.TextCommand):
-    srv_env = []
 
     def run(self, edit):
 
@@ -14,20 +13,34 @@ class SublimeVenvWrapper(sublime_plugin.TextCommand):
         data = json.loads(sublime.load_resource(json_file))
 
         self.venv_list = []
-        self.main_list = []
+
+        self.venvlistcreate(data)
+
+        self.view.window().show_quick_panel(self.venv_list, self.on_done)
+
+    def venvlistcreate(self, data):
         for paths in data.values():
             for path in iter(paths):
                 path = os.path.expanduser(path)
                 if os.path.exists(path):
-                    [self.venv_list.append([venv, os.path.join(path, venv)]) for venv in iter(os.listdir(path)) if os.path.isdir(os.path.join(path, venv))]
-        self.view.window().show_quick_panel(self.venv_list, self.on_done)
+                    for venv in iter(os.listdir(path)):
+                        if os.path.isdir(os.path.join(path, venv)):
+                            real_path = os.path.realpath(os.path.join(path, venv))
+                            if '/bin' not in real_path:
+                                real_path = os.path.join(real_path, 'bin')
+                            if self.view.window().project_file_name() is not None:
+                                if os.path.split(real_path)[0] == os.path.split(self.view.window().project_file_name())[0]:
+                                    self.venv_list.insert(0, [venv, real_path])
+                                else:
+                                    self.venv_list.append([venv, real_path])
+                            else:
+                                self.venv_list.append([venv, real_path])
 
     def on_done(self, index):
         self.description()
         if index >= 0:
             try:
                 venv_dir = os.path.realpath(self.venv_list[index][1])
-                print(venv_dir)
                 self.view.window().run_command('sublime_repl_venv_runner', {'venv_dir': venv_dir})
             except ValueError:
                 self.print('Invalid Directory')
