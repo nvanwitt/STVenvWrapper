@@ -30,14 +30,14 @@
                             {
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/STVenvWrapper/Main.sublime-menu"
+                                    "file": "${packages}/STVenvWrapper/STVenvWrapper.sublime-settings"
                                 },
                                 "caption": "Settings – Default"
                             },
                             {
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/User/STVenvWrapper.Main.sublime-menu"
+                                    "file": "${packages}/User/STVenvWrapper.sublime-settings"
                                 },
                                 "caption": "Settings – User"
                             },

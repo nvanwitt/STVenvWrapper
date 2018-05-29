@@ -1,16 +1,13 @@
 import sublime
 import sublime_plugin
 import os
-import json
 
 
 class SublimeVenvWrapper(sublime_plugin.TextCommand):
 
     def run(self, edit):
 
-        json_file = sublime.find_resources("STVenvWrapper.sublime-settings")[0]
-
-        data = json.loads(sublime.load_resource(json_file))
+        data = sublime.load_settings("STVenvWrapper.sublime-settings").get("python_venv_paths")
 
         self.venv_list = []
 
@@ -19,16 +16,19 @@ class SublimeVenvWrapper(sublime_plugin.TextCommand):
         self.view.window().show_quick_panel(self.venv_list, self.on_done)
 
     def venvlistcreate(self, data):
-        for paths in data.values():
-            for path in iter(paths):
-                path = os.path.expanduser(path)
-                if os.path.exists(path):
-                    for venv in iter(os.listdir(path)):
-                        if os.path.isdir(os.path.join(path, venv)):
-                            real_path = os.path.realpath(os.path.join(path, venv))
-                            if '/bin' not in real_path:
-                                real_path = os.path.join(real_path, 'bin')
+        for path in iter(data):
+            print(path)
+            print(self.view.settings().get("python_venv_paths", True))
+            path = os.path.expanduser(path)
+            if os.path.exists(path):
+                for venv in iter(os.listdir(path)):
+                    real_path = os.path.realpath(os.path.join(path, venv))
+                    if '/bin' not in real_path:
+                            real_path = os.path.join(real_path, 'bin')
+                    if os.path.isdir(real_path):
+                        if 'activate' and 'python' in os.listdir(real_path):
                             if self.view.window().project_file_name() is not None:
+                                print(self.view.window().project_data())
                                 if os.path.split(real_path)[0] == os.path.split(self.view.window().project_file_name())[0]:
                                     self.venv_list.insert(0, [venv, real_path])
                                 else:
@@ -72,4 +72,3 @@ class SublimeReplVenvRunner(sublime_plugin.WindowCommand):
 
         except ValueError:
             print('Fail')
-            
