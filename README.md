@@ -1,4 +1,4 @@
-# SublimeVenvWrapper
+# STVenvWrapper
 Wrapper for Virtual Environment Access with SublimeREPL
 
 
