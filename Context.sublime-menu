@@ -6,8 +6,8 @@
         [
         	{
                 "command": "sublime_venv_wrapper",
-                "id": "anaconda_goto",
-                "caption": "Goto Definition"
+                "id": "sublime_venv_wrapper",
+                "caption": "Open Virtual Environment"
             }
         ]
 	}

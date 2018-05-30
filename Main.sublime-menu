@@ -1,17 +1,5 @@
 [
     {
-        "id": "tools",
-        "children":
-        [{
-            "caption": "STEnvWrapper",
-            "mnemonic": "R",
-            "id": "STEnvWrapper",
-            "children":
-            [
-            ]
-        }]
-    },
-    {
         "caption": "Preferences",
         "mnemonic": "n",
         "id": "preferences",
@@ -28,6 +16,17 @@
                         "children":
                         [
                             {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/STVenvWrapper/README.md"},
+                                "caption": "README"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {"file": "${packages}/STVenvWrapper/LICENSE"},
+                                "caption": "LICENSE"
+                            },
+                            { "caption": "-" },
+                            {
                                 "command": "open_file", "args":
                                 {
                                     "file": "${packages}/STVenvWrapper/STVenvWrapper.sublime-settings"
@@ -40,6 +39,55 @@
                                     "file": "${packages}/User/STVenvWrapper.sublime-settings"
                                 },
                                 "caption": "Settings – User"
+                            },
+                            { "caption": "-" },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/STVenvWrapper/Default (OSX).sublime-keymap",
+                                    "platform": "OSX"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/STVenvWrapper/Default (Linux).sublime-keymap",
+                                    "platform": "Linux"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/STVenvWrapper/Default (Windows).sublime-keymap",
+                                    "platform": "Windows"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/User/Default (OSX).sublime-keymap",
+                                    "platform": "OSX"
+                                },
+                                "caption": "Key Bindings – User"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/User/Default (Linux).sublime-keymap",
+                                    "platform": "Linux"
+                                },
+                                "caption": "Key Bindings – User"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/User/Default (Windows).sublime-keymap",
+                                    "platform": "Windows"
+                                },
+                                "caption": "Key Bindings – User"
                             },
                             { "caption": "-" }
                         ]
