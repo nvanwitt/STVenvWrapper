@@ -1,6 +1,6 @@
 [
 	{
   		"caption": "STVenvWrapper",
-  		"command": "sublime_venv_wrapper"
+  		"command": "run_venv_selector"
 	}
 ] 

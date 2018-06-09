@@ -1,5 +1,5 @@
 [
 	{
-		"keys": ["super+shift+y"], "command": "sublime_venv_wrapper"
+		"keys": ["super+shift+y"], "command": "run_venv_selector"
 	}
 ]

@@ -5,7 +5,7 @@
         "children":
         [
         	{
-                "command": "sublime_venv_wrapper",
+                "command": "run_venv_selector",
                 "id": "sublime_venv_wrapper",
                 "caption": "Open Virtual Environment"
             }
