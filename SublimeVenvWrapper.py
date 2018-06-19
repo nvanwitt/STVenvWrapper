@@ -1,6 +1,7 @@
 import sublime
 import sublime_plugin
 import os
+import shutil
 
 
 class RunVenvSelectorCommand(sublime_plugin.WindowCommand):
@@ -8,7 +9,7 @@ class RunVenvSelectorCommand(sublime_plugin.WindowCommand):
     def run(self):
         if os.path.exists(os.path.join(sublime.packages_path(), 'SublimeREPL')) is False:
             sublime.message_dialog('Use of this wrapper requires the SublimeREPL package. You can install this package via Package Control')
-            exit()
+            return
 
         # Load Settings file, /User/STVenvWrapper.sublime-settings file will predominate per SublimeText hierarchy
         data = sublime.load_settings("STVenvWrapper.sublime-settings").get("python_venv_paths")
@@ -41,9 +42,9 @@ class RunVenvSelectorCommand(sublime_plugin.WindowCommand):
                         self.appendvenvlist(venv, real_path)
 
     def appendvenvlist(self, venv, venvpath):
-        # Appends virtual environemnt name and path to list if activate and python files are detected (indicating true venv bin path)
+        # Appends virtual environment name and path to list if activate and python files are detected (indicating true venv bin path)
         if os.path.isdir(venvpath):
-            if 'activate' and 'python' in os.listdir(venvpath):
+            if shutil.which(os.path.join(venvpath, 'python')) and os.path.isfile(os.path.join(venvpath, 'activate')):
                 if self.window.project_file_name() is not None:
                     if os.path.split(venvpath)[0] == os.path.split(self.window.project_file_name())[0]:
                         # If project file detected, insert corresponding virtual environment (if applicable) to start of list
